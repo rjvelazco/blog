@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { TableOfContents } from '@components/mdx/table-of-contents';
 import { SharePost } from '@components/ui/share-post';
+import { NewsletterForm } from '@components/ui/newsletter-form';
 
 interface MdxLayoutProps {
   children: React.ReactNode;
@@ -24,7 +25,7 @@ interface MdxLayoutProps {
 
 export default function MdxLayout({ children, metadata, image, toc }: MdxLayoutProps) {
   return (
-    <div className="mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8">
+    <div className="mx-auto w-full max-w-7xl ">
       {/* Back to blog navigation */}
       <nav className="mb-8 pt-6">
         <Link
@@ -37,17 +38,25 @@ export default function MdxLayout({ children, metadata, image, toc }: MdxLayoutP
         </Link>
       </nav>
 
-      <ArticleHeader metadata={metadata} image={image} />
+      {/* Two-column layout: content on left, newsletter on right (desktop only) */}
+      <div className="lg:grid lg:grid-cols-[1fr_320px] lg:gap-8 xl:gap-12">
+        {/* Main Content Column */}
+        <div className="min-w-0">
+          <ArticleHeader metadata={metadata} image={image} />
 
-      {/* Article content */}
-      <article className="prose prose-lg prose-zinc max-w-none prose-headings:scroll-mt-20 prose-pre:bg-zinc-900 prose-pre:text-zinc-100 prose-a:text-primary-600 prose-a:decoration-primary-300 prose-a:underline-offset-4 hover:prose-a:text-primary-700 dark:prose-invert dark:prose-a:text-primary-300 dark:hover:prose-a:text-primary-200 dark:prose-pre:bg-zinc-950">
-        {toc && toc.length > 0 ? <TableOfContents toc={toc} /> : null}
-        {children}
-      </article>
+          {/* Article content */}
+          <article className="prose prose-lg prose-zinc max-w-none prose-headings:scroll-mt-20 prose-pre:bg-zinc-900 prose-pre:text-zinc-100 prose-a:text-primary-600 prose-a:decoration-primary-300 prose-a:underline-offset-4 hover:prose-a:text-primary-700 dark:prose-invert dark:prose-a:text-primary-300 dark:hover:prose-a:text-primary-200 dark:prose-pre:bg-zinc-950">
+            {toc && toc.length > 0 ? <TableOfContents toc={toc} /> : null}
+            {children}
+          </article>
 
-      {/* Article footer with navigation back to blog */}
+          {/* Article footer with navigation back to blog */}
+          <ArticleFooter />
+        </div>
 
-      <ArticleFooter />
+        {/* Newsletter Sidebar Column */}
+        <NewsletterForm />
+      </div>
     </div>
   );
 }
