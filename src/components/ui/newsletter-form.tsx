@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 
 const STORAGE_KEY = 'newsletter_subscribed';
-const DISMISSED_KEY = 'newsletter_dismissed';
 
 export function NewsletterForm() {
   const [email, setEmail] = useState('');
@@ -15,11 +14,6 @@ export function NewsletterForm() {
   const [isSubscribed, setIsSubscribed] = useState(() => {
     if (typeof window === 'undefined') return false;
     return localStorage.getItem(STORAGE_KEY) === 'true';
-  });
-
-  const [isDismissed, setIsDismissed] = useState(() => {
-    if (typeof window === 'undefined') return false;
-    return localStorage.getItem(DISMISSED_KEY) === 'true';
   });
 
   // Email validation state
@@ -52,11 +46,6 @@ export function NewsletterForm() {
       }
     }
   }, [fullName, nameTouched]);
-
-  const handleDismiss = () => {
-    localStorage.setItem(DISMISSED_KEY, 'true');
-    setIsDismissed(true);
-  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -114,36 +103,39 @@ export function NewsletterForm() {
     }
   };
 
-  // Don't render if dismissed or already subscribed
-  if (isDismissed || isSubscribed) {
-    return null;
+  // Show subscribed message if already subscribed
+  if (isSubscribed) {
+    return (
+      <aside className="sticky top-24 hidden lg:block">
+        <div className="rounded-xl border border-green-200 bg-green-50 dark:bg-green-900/20 dark:border-green-800 p-6 shadow-sm">
+          <div className="flex items-start gap-3">
+            <svg
+              className="h-6 w-6 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <div>
+              <h3 className="text-lg font-semibold text-green-900 dark:text-green-100 mb-2">You&apos;re Subscribed!</h3>
+              <p className="text-sm text-green-800 dark:text-green-200">
+                You&apos;re already a subscriber to this newsletter. Thank you for being part of our community!
+              </p>
+              <p className="mt-3 text-xs text-green-700 dark:text-green-300">
+                You&apos;ll receive the latest posts directly in your inbox.
+              </p>
+            </div>
+          </div>
+        </div>
+      </aside>
+    );
   }
 
   return (
     <aside className="sticky top-24 hidden lg:block">
       <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
-        {/* Close button */}
-        <button
-          onClick={handleDismiss}
-          className="absolute top-4 right-4 text-muted-foreground hover:text-foreground transition-colors"
-          aria-label="Dismiss newsletter form"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
-          </svg>
-        </button>
-
         <div className="mb-4">
           <h3 className="text-lg font-semibold text-foreground mb-2">Subscribe to Newsletter</h3>
           <p className="text-sm text-muted-foreground">
