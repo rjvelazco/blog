@@ -1,10 +1,10 @@
-import type { VercelRequest, VercelResponse } from '@vercel/node';
-
 /**
- * ConvertKit Subscribe API Route
+ * ConvertKit Subscribe API Route (v4 API)
  * Securely handles newsletter subscriptions without exposing API keys to the client
+ * @param {import('@vercel/node').VercelRequest} req
+ * @param {import('@vercel/node').VercelResponse} res
  */
-export default async function handler(req: VercelRequest, res: VercelResponse) {
+module.exports = async (req, res) => {
   try {
     // Only allow POST requests
     if (req.method !== 'POST') {
@@ -79,4 +79,4 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       debug: process.env.NODE_ENV === 'development' ? String(error) : undefined,
     });
   }
-}
+};

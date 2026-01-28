@@ -1,9 +1,9 @@
-import type { VercelRequest, VercelResponse } from '@vercel/node';
-
 /**
  * Health check endpoint to verify API routes work
+ * @param {import('@vercel/node').VercelRequest} req
+ * @param {import('@vercel/node').VercelResponse} res
  */
-export default async function handler(req: VercelRequest, res: VercelResponse) {
+module.exports = async (req, res) => {
   const hasApiKey = !!process.env.CONVERTKIT_API_KEY;
   const hasFormId = !!process.env.CONVERTKIT_FORM_ID;
 
@@ -16,4 +16,4 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       formIdLength: process.env.CONVERTKIT_FORM_ID?.length || 0,
     },
   });
-}
+};
