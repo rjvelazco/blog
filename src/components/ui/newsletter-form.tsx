@@ -106,7 +106,7 @@ export function NewsletterForm() {
   // Show subscribed message if already subscribed
   if (isSubscribed) {
     return (
-      <aside className="sticky top-24 hidden lg:block">
+      <aside className="sticky top-24 hidden lg:block self-start">
         <div className="rounded-xl border border-green-200 bg-green-50 dark:bg-green-900/20 dark:border-green-800 p-6 shadow-sm">
           <div className="flex items-start gap-3">
             <svg
@@ -134,7 +134,7 @@ export function NewsletterForm() {
   }
 
   return (
-    <aside className="sticky top-24 hidden lg:block">
+    <aside className="sticky top-24 hidden lg:block self-start">
       <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
         <div className="mb-4">
           <h3 className="text-lg font-semibold text-foreground mb-2">Subscribe to Newsletter</h3>
