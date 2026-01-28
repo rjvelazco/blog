@@ -1,4 +1,144 @@
 /**
+ * Validates that the request method is POST
+ * @param {import('@vercel/node').VercelRequest} req
+ * @param {import('@vercel/node').VercelResponse} res
+ * @returns {boolean} Returns false if method is invalid (response already sent)
+ */
+function validateMethod(req, res) {
+  if (req.method !== 'POST') {
+    res.status(405).json({ error: 'Method not allowed' });
+    return false;
+  }
+  return true;
+}
+
+/**
+ * Gets and validates the ConvertKit API key from environment variables
+ * @returns {string|null} Returns the API key or null if missing
+ */
+function getApiKey() {
+  const apiKey = process.env.CONVERTKIT_API_KEY;
+  if (!apiKey) {
+    console.error('Missing CONVERTKIT_API_KEY in environment variables');
+  }
+  return apiKey;
+}
+
+/**
+ * Parses a full name into first and last name
+ * @param {string} fullName
+ * @returns {{firstName: string, lastName: string}}
+ */
+function parseName(fullName) {
+  const trimmedName = fullName.trim();
+  const nameParts = trimmedName.split(/\s+/);
+  const firstName = nameParts[0] || trimmedName;
+  const lastName = nameParts.slice(1).join(' ') || '';
+  return { firstName, lastName };
+}
+
+/**
+ * Normalizes an email address
+ * @param {string} email
+ * @returns {string}
+ */
+function normalizeEmail(email) {
+  return email.trim().toLowerCase();
+}
+
+/**
+ * Builds the request body for ConvertKit API
+ * @param {string} email
+ * @param {string} firstName
+ * @param {string} lastName
+ * @returns {object}
+ */
+function buildRequestBody(email, firstName, lastName) {
+  const requestBody = {
+    email_address: email,
+    first_name: firstName,
+    state: 'active',
+  };
+
+  if (lastName) {
+    requestBody.fields = {
+      'Last name': lastName,
+    };
+  }
+
+  return requestBody;
+}
+
+/**
+ * Subscribes a user to ConvertKit
+ * @param {string} apiKey
+ * @param {object} requestBody
+ * @returns {Promise<Response>}
+ */
+async function subscribeToConvertKit(apiKey, requestBody) {
+  return fetch('https://api.kit.com/v4/subscribers', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Kit-Api-Key': apiKey,
+    },
+    body: JSON.stringify(requestBody),
+  });
+}
+
+/**
+ * Checks if the error indicates the user is already subscribed
+ * @param {object} data
+ * @param {number} status
+ * @returns {boolean}
+ */
+function isAlreadySubscribed(data, status) {
+  const errorMessage = data.error || data.message || JSON.stringify(data);
+  const errorString = errorMessage.toLowerCase();
+
+  return (
+    errorString.includes('already subscribed') ||
+    errorString.includes('already exists') ||
+    errorString.includes('duplicate') ||
+    status === 422
+  );
+}
+
+/**
+ * Handles API error responses
+ * @param {import('@vercel/node').VercelResponse} res
+ * @param {Response} apiResponse
+ * @param {object} data
+ */
+function handleApiError(res, apiResponse, data) {
+  console.error('ConvertKit API error:', apiResponse.status, data);
+
+  if (isAlreadySubscribed(data, apiResponse.status)) {
+    return res.status(200).json({
+      success: true,
+      alreadySubscribed: true,
+      message: 'You are already subscribed',
+    });
+  }
+
+  const statusCode = apiResponse.status >= 400 && apiResponse.status < 500 ? apiResponse.status : 500;
+  res.status(statusCode).json({
+    error: data.message || data.error || 'Something went wrong, please try again later',
+  });
+}
+
+/**
+ * Handles successful API responses
+ * @param {import('@vercel/node').VercelResponse} res
+ */
+function handleApiSuccess(res) {
+  res.status(200).json({
+    success: true,
+    message: 'Successfully subscribed! Check your email for confirmation.',
+  });
+}
+
+/**
  * ConvertKit Subscribe API Route (v4 API)
  * Securely handles newsletter subscriptions without exposing API keys to the client
  * @param {import('@vercel/node').VercelRequest} req
@@ -6,75 +146,30 @@
  */
 module.exports = async (req, res) => {
   try {
-    // Only allow POST requests
-    if (req.method !== 'POST') {
-      return res.status(405).json({ error: 'Method not allowed' });
-    }
+    if (!validateMethod(req, res)) return;
 
     const { email, fullName } = req.body;
+    const apiKey = getApiKey();
 
-    // Validate email
-    if (!email || typeof email !== 'string' || !email.includes('@')) {
-      return res.status(400).json({ error: 'Please enter a valid email address' });
-    }
-
-    // Validate full name
-    if (!fullName || typeof fullName !== 'string' || fullName.trim().length === 0) {
-      return res.status(400).json({ error: 'Please enter your full name' });
-    }
-
-    // Get ConvertKit credentials from environment variables
-    const CONVERTKIT_API_KEY = process.env.CONVERTKIT_API_KEY;
-    const CONVERTKIT_FORM_ID = process.env.CONVERTKIT_FORM_ID;
-
-    if (!CONVERTKIT_API_KEY || !CONVERTKIT_FORM_ID) {
-      console.error('Missing ConvertKit configuration in environment variables');
+    if (!apiKey) {
       return res.status(500).json({ error: 'Something went wrong, please try again later' });
     }
 
-    // Call ConvertKit v4 Forms API
-    const apiResponse = await fetch(`https://api.kit.com/v4/forms/${CONVERTKIT_FORM_ID}/subscribers`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Kit-Api-Key': CONVERTKIT_API_KEY,
-      },
-      body: JSON.stringify({
-        email_address: email.trim().toLowerCase(),
-        first_name: fullName.trim(),
-      }),
-    });
+    const { firstName, lastName } = parseName(fullName);
+    const normalizedEmail = normalizeEmail(email);
+    const requestBody = buildRequestBody(normalizedEmail, firstName, lastName);
 
+    const apiResponse = await subscribeToConvertKit(apiKey, requestBody);
     const data = await apiResponse.json();
 
     if (!apiResponse.ok) {
-      console.error('ConvertKit API error:', apiResponse.status, data);
-
-      // Check if already subscribed (v4 API might return different error format)
-      const errorMessage = data.error || data.message || JSON.stringify(data);
-      if (
-        errorMessage.toLowerCase().includes('already subscribed') ||
-        errorMessage.toLowerCase().includes('already exists')
-      ) {
-        return res.status(200).json({
-          success: true,
-          alreadySubscribed: true,
-          message: 'You are already subscribed',
-        });
-      }
-
-      return res.status(apiResponse.status).json({
-        error: data.message || data.error || 'Something went wrong, please try again later',
-      });
+      return handleApiError(res, apiResponse, data);
     }
 
-    return res.status(200).json({
-      success: true,
-      message: 'Successfully subscribed! Check your email for confirmation.',
-    });
+    handleApiSuccess(res);
   } catch (error) {
     console.error('Subscribe handler error:', error);
-    return res.status(500).json({
+    res.status(500).json({
       error: 'Something went wrong, please try again later',
       debug: process.env.NODE_ENV === 'development' ? String(error) : undefined,
     });
