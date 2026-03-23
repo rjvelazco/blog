@@ -1,11 +1,9 @@
-'use client';
-
-import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { TableOfContents } from '@components/mdx/table-of-contents';
 import { SharePost } from '@components/ui/share-post';
 import { BlogPostLayout } from '@components/layout/blog-post-layout';
+import { SubscriberMessage } from '@components/layout/subscriber-message';
 
 interface MdxLayoutProps {
   children: React.ReactNode;
@@ -141,35 +139,5 @@ const ArticleFooter = () => {
         </div>
       </div>
     </footer>
-  );
-};
-
-/**
- * Subscriber message component (client-side)
- * Shows different message if user is subscribed to newsletter
- */
-const SubscriberMessage = () => {
-  const [isSubscribed, setIsSubscribed] = useState(false);
-
-  useEffect(() => {
-    const subscribed = localStorage.getItem('newsletter_subscribed') === 'true';
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    setIsSubscribed(subscribed);
-  }, []);
-
-  if (isSubscribed) {
-    return (
-      <div className="text-center text-sm text-muted-foreground sm:text-right">
-        <div className="font-medium text-foreground">¡Gracias por leer!</div>
-        <div className="mt-0.5 text-muted-foreground">Eres un suscriptor actual del blog</div>
-      </div>
-    );
-  }
-
-  return (
-    <div className="text-center text-sm text-muted-foreground sm:text-right">
-      <div className="font-medium text-foreground">¡Gracias por leer!</div>
-      <div className="mt-0.5 text-muted-foreground">¿Quieres más artículos como este? Explora la sección de blog.</div>
-    </div>
   );
 };
