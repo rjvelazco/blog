@@ -1,0 +1,52 @@
+LLM Project Guide: Rafael Velazco — Personal site & blog
+
+Purpose
+- Personal website, portfolio, and MDX blog.
+- Built with Next.js App Router and static export.
+
+Tech Stack
+- Next.js 16 (App Router), React 19, TypeScript 5
+- Tailwind CSS v4 (plus Typography plugin)
+- MDX via @next/mdx with remark-gfm and rehype-pretty-code
+- shadcn/ui + Radix primitives
+- Package manager: Yarn 1.22.21
+
+Repository Structure
+- src/app/               Next.js App Router pages & layouts
+- src/components/ui/     Reusable UI components
+- src/components/mdx/    MDX-specific components
+- src/components/layout/ Layout components
+- src/data/              Static data
+- src/utils/             General utilities
+
+Key Conventions
+- TypeScript only (.ts/.tsx), strict mode.
+- Functional components only.
+- Prefer named exports; avoid default exports for components.
+- Use explicit prop and return types.
+- Import hooks directly from React (no namespace imports).
+- For client components, include 'use client' at top.
+- Use Tailwind classes; prefer design tokens over arbitrary values.
+- Use cn() from @components/utils for class merging.
+- Use path aliases: @components/*, @data/*, @utils/*.
+- Icons: Material Symbols Outlined, names are lowercase with underscores.
+
+MDX Notes
+- Posts live under src/app/(site)/blog/posts/*/page.mdx.
+- MDX components configured in src/mdx-components.tsx.
+
+Build & Dev
+- yarn dev        Run dev server
+- yarn build      Static export to build/
+- yarn lint       Lint
+- yarn format     Format
+
+Quality Expectations
+- Keep client components minimal; prefer server components.
+- Optimize images with Next.js Image.
+- Ensure accessibility (semantic HTML, ARIA where needed).
+
+Output Requirements (for edits)
+- Match existing project style and conventions.
+- Keep components small and focused.
+- Avoid unnecessary comments; add only for complex logic.
