@@ -10,47 +10,21 @@ export function NewsletterForm() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [message, setMessage] = useState('');
 
-  // Lazy initialization from localStorage
-  const [isSubscribed, setIsSubscribed] = useState(() => false);
+  const [isSubscribed, setIsSubscribed] = useState(false);
 
-  // Email validation state
-  const [emailError, setEmailError] = useState('');
-  const [nameError, setNameError] = useState('');
   const [emailTouched, setEmailTouched] = useState(false);
   const [nameTouched, setNameTouched] = useState(false);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const subscribed = localStorage.getItem(STORAGE_KEY) === 'true';
-      // eslint-disable-next-line react-hooks/exhaustive-deps
       setIsSubscribed(subscribed);
     }
   }, []);
 
-  // Real-time email validation
-  useEffect(() => {
-    if (emailTouched && email) {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(email)) {
-        // eslint-disable-next-line react-hooks/set-state-in-effect
-        setEmailError('Please enter a valid email address');
-      } else {
-        setEmailError('');
-      }
-    }
-  }, [email, emailTouched]);
-
-  // Real-time name validation
-  useEffect(() => {
-    if (nameTouched && fullName) {
-      if (fullName.trim().length === 0) {
-        // eslint-disable-next-line react-hooks/set-state-in-effect
-        setNameError('Please enter your full name');
-      } else {
-        setNameError('');
-      }
-    }
-  }, [fullName, nameTouched]);
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const emailError = emailTouched && !emailRegex.test(email) ? 'Please enter a valid email address' : '';
+  const nameError = nameTouched && fullName.trim().length === 0 ? 'Please enter your full name' : '';
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -59,14 +33,7 @@ export function NewsletterForm() {
     setEmailTouched(true);
     setNameTouched(true);
 
-    // Final validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      setEmailError('Please enter a valid email address');
-      return;
-    }
-    if (fullName.trim().length === 0) {
-      setNameError('Please enter your full name');
+    if (!emailRegex.test(email) || fullName.trim().length === 0) {
       return;
     }
 

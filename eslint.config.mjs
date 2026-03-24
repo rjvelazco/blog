@@ -8,6 +8,12 @@ export default defineConfig([
   ...nextTs,
   // Disable formatting-related ESLint rules that conflict with Prettier.
   prettier,
+  {
+    rules: {
+      // Allow setState inside effects (e.g. syncing from localStorage after hydrate).
+      'react-hooks/set-state-in-effect': 'off',
+    },
+  },
   // Override default ignores of eslint-config-next.
   globalIgnores([
     // Default ignores of eslint-config-next:

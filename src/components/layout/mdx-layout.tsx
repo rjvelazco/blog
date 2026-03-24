@@ -153,7 +153,6 @@ const SubscriberMessage = () => {
 
   useEffect(() => {
     const subscribed = localStorage.getItem('newsletter_subscribed') === 'true';
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     setIsSubscribed(subscribed);
   }, []);
 

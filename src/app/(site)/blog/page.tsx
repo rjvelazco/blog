@@ -21,7 +21,7 @@ const categoryVariant = (category: string): BadgeVariant => {
   return map[category] ?? 'default';
 };
 
-export default async function BlogPage({ searchParams }: { searchParams: Promise<{ category?: string }> }) {
+export default async function BlogPage() {
   const posts = await getPosts();
 
   const categories = [...new Set(posts.map((post) => post.category).filter(Boolean))] as string[];

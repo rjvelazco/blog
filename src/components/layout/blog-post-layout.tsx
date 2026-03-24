@@ -14,7 +14,6 @@ export function BlogPostLayout({ children }: BlogPostLayoutProps) {
 
   useEffect(() => {
     const subscribed = localStorage.getItem(STORAGE_KEY) === 'true';
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     setIsSubscribed(subscribed);
   }, []);
 
