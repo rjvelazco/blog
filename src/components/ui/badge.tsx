@@ -19,7 +19,7 @@ const badgeVariants = cva(
         ngrx: 'bg-[#eff6ff] text-[#3b82f6] border-[#bfdbfe] dark:bg-[#3b82f6]/20 dark:text-[#93c5fd] dark:border-[#3b82f6]/30',
         book: 'bg-[#fdf4ff] text-[#9333ea] border-[#e9d5ff] dark:bg-[#9333ea]/20 dark:text-[#c084fc] dark:border-[#9333ea]/30',
         leadership:
-          'bg-[#f0f0f0] text-[#555555] border-[#d4d4d4] dark:bg-white/10 dark:text-[#aaaaaa] dark:border-white/20',
+          'bg-gray-100 text-gray-600 border-gray-300 dark:bg-white/10 dark:text-gray-400 dark:border-white/20',
       },
     },
     defaultVariants: {

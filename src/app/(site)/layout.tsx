@@ -36,15 +36,15 @@ export default function RootLayout({
         <div className="grid grid-cols-1 gap-8 py-12 sm:grid-cols-3">
           {/* Col 1: Bio */}
           <div className="space-y-3">
-            <p className="text-[10px] font-bold tracking-[0.08em] uppercase text-[#aaaaaa]">Rafael Velazco</p>
-            <p className="text-sm text-[#666666] dark:text-[#aaaaaa] leading-relaxed">
+            <p className="text-[10px] font-bold tracking-[0.08em] uppercase text-gray-400">Rafael Velazco</p>
+            <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
               Senior Software Engineer escribiendo sobre código, personas e ideas.
             </p>
           </div>
 
           {/* Col 2: Navigation */}
           <div className="space-y-3">
-            <p className="text-[10px] font-bold tracking-[0.08em] uppercase text-[#aaaaaa]">Navegación</p>
+            <p className="text-[10px] font-bold tracking-[0.08em] uppercase text-gray-400">Navegación</p>
             <ul className="space-y-2">
               {[
                 { href: '/blog', label: 'Blog' },
@@ -54,7 +54,7 @@ export default function RootLayout({
                 <li key={label}>
                   <Link
                     href={href}
-                    className="text-sm text-[#666666] dark:text-[#aaaaaa] hover:text-primary-700 dark:hover:text-primary-500 transition-colors"
+                    className="text-sm text-gray-500 dark:text-gray-400 hover:text-primary-700 dark:hover:text-primary-500 transition-colors"
                   >
                     {label}
                   </Link>
@@ -65,7 +65,7 @@ export default function RootLayout({
 
           {/* Col 3: Topics */}
           <div className="space-y-3">
-            <p className="text-[10px] font-bold tracking-[0.08em] uppercase text-[#aaaaaa]">Temas</p>
+            <p className="text-[10px] font-bold tracking-[0.08em] uppercase text-gray-400">Temas</p>
             <ul className="space-y-2">
               {[
                 { href: '/blog?category=Angular', label: 'Angular' },
@@ -76,7 +76,7 @@ export default function RootLayout({
                 <li key={label}>
                   <Link
                     href={href}
-                    className="text-sm text-[#666666] dark:text-[#aaaaaa] hover:text-primary-700 dark:hover:text-primary-500 transition-colors"
+                    className="text-sm text-gray-500 dark:text-gray-400 hover:text-primary-700 dark:hover:text-primary-500 transition-colors"
                   >
                     {label}
                   </Link>
@@ -88,7 +88,7 @@ export default function RootLayout({
 
         {/* Bottom bar */}
         <div className="flex flex-col-reverse gap-4 border-t border-[#eeeeee] dark:border-[#2a2a2a] py-6 sm:flex-row sm:items-center sm:justify-between">
-          <span className="text-sm text-[#aaaaaa]">© {currentYear} Rafael Velazco. All Rights Reserved.</span>
+          <span className="text-sm text-gray-400">© {currentYear} Rafael Velazco. All Rights Reserved.</span>
           <ul className="flex items-center gap-4">
             <li>
               <Link href="https://github.com/rjvelazco" aria-label="GitHub">

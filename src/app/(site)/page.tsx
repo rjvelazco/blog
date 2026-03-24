@@ -33,13 +33,13 @@ export default async function Home() {
     <div className="mx-auto flex flex-col gap-12 py-8 md:py-12">
       {/* Hero Section */}
       <section className="pt-4 pb-8 md:pb-16">
-        <p className="text-[11px] font-bold tracking-[0.08em] uppercase text-[#aaaaaa] dark:text-[#555555] mb-4">
+        <p className="text-[11px] font-bold tracking-[0.08em] uppercase text-gray-400 dark:text-gray-600 mb-4">
           Senior Software Engineer
         </p>
-        <h1 className="text-5xl md:text-[56px] font-extrabold leading-tight tracking-[-0.03em] text-[#111111] dark:text-[#f0f0f0] max-w-2xl">
+        <h1 className="text-5xl md:text-[56px] font-extrabold leading-tight tracking-[-0.03em] text-gray-900 dark:text-white max-w-2xl">
           Entrega valor <span className="text-primary-700 dark:text-primary-500">más allá del código</span>
         </h1>
-        <p className="mt-4 text-base md:text-lg text-[#666666] dark:text-[#aaaaaa] max-w-xl">
+        <p className="mt-4 text-base md:text-lg text-gray-500 dark:text-gray-400 max-w-xl">
           Escribo sobre Angular, arquitectura frontend, personas e ideas.
         </p>
       </section>
@@ -47,7 +47,7 @@ export default async function Home() {
       {/* Latest Posts Section */}
       {featuredPosts.length > 0 && (
         <section className="space-y-8">
-          <h2 className="text-2xl md:text-3xl font-bold tracking-[-0.02em] text-[#111111] dark:text-[#f0f0f0]">
+          <h2 className="text-2xl md:text-3xl font-bold tracking-[-0.02em] text-gray-900 dark:text-white">
             Artículos Recientes
           </h2>
 
@@ -68,7 +68,7 @@ export default async function Home() {
                     </Badge>
                   )}
                   <div className="flex items-center gap-2 mb-3">
-                    <time className="text-[13px] text-[#aaaaaa]" dateTime={post.publishDate}>
+                    <time className="text-[13px] text-gray-400" dateTime={post.publishDate}>
                       {new Date(post.publishDate).toLocaleDateString('en-US', {
                         year: 'numeric',
                         month: 'short',
@@ -77,19 +77,19 @@ export default async function Home() {
                     </time>
                     {post.category && (
                       <>
-                        <span className="text-[#aaaaaa]">·</span>
+                        <span className="text-gray-400">·</span>
                         <Badge variant={categoryVariant(post.category)}>{post.category}</Badge>
                       </>
                     )}
                   </div>
 
                   <Link href={`/blog/posts/${post.slug}`}>
-                    <h3 className="text-[18px] font-semibold mb-3 group-hover:text-primary-700 dark:group-hover:text-primary-500 transition-colors leading-tight text-[#111111] dark:text-[#f0f0f0]">
+                    <h3 className="text-[18px] font-semibold mb-3 group-hover:text-primary-700 dark:group-hover:text-primary-500 transition-colors leading-tight text-gray-900 dark:text-white">
                       {post.title}
                     </h3>
                   </Link>
 
-                  <p className="text-[15px] text-[#666666] dark:text-[#aaaaaa] mb-4 leading-relaxed line-clamp-3">
+                  <p className="text-[15px] text-gray-500 dark:text-gray-400 mb-4 leading-relaxed line-clamp-3">
                     {post.description}
                   </p>
 
