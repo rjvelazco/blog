@@ -1,8 +1,21 @@
 import Link from 'next/link';
 import { getPosts } from '@utils/post-utils';
-import { Badge } from '@components/ui/badge';
+import { Badge, badgeVariants } from '@components/ui/badge';
+import type { VariantProps } from 'class-variance-authority';
+
+type BadgeVariant = VariantProps<typeof badgeVariants>['variant'];
 
 const NOW_MS = Date.now();
+
+const categoryVariant = (category: string): BadgeVariant => {
+  const map: Record<string, BadgeVariant> = {
+    Angular: 'angular',
+    NgRx: 'ngrx',
+    Book: 'book',
+    Leadership: 'leadership',
+  };
+  return map[category] ?? 'default';
+};
 
 export default async function Home() {
   const posts = await getPosts();
@@ -17,42 +30,45 @@ export default async function Home() {
   };
 
   return (
-    <div className="mx-auto flex flex-col gap-8 py-8 md:py-12">
+    <div className="mx-auto flex flex-col gap-12 py-8 md:py-12">
       {/* Hero Section */}
-      <section className="pl-4 pb-4 md:pb-12">
-        <h1 className="text-3xl md:text-5xl leading-snug pl-2">
-          Entrega valor{' '}
-          <span className="bg-gradient-to-r from-primary-600 to-indigo-400 bg-clip-text text-transparent">
-            más allá del código
-          </span>
+      <section className="pt-4 pb-8 md:pb-16">
+        <p className="text-[11px] font-bold tracking-[0.08em] uppercase text-[#aaaaaa] dark:text-[#555555] mb-4">
+          Senior Software Engineer
+        </p>
+        <h1 className="text-5xl md:text-[56px] font-extrabold leading-tight tracking-[-0.03em] text-[#111111] dark:text-[#f0f0f0] max-w-2xl">
+          Entrega valor <span className="text-primary-700 dark:text-primary-500">más allá del código</span>
         </h1>
+        <p className="mt-4 text-base md:text-lg text-[#666666] dark:text-[#aaaaaa] max-w-xl">
+          Escribo sobre Angular, arquitectura frontend, personas e ideas.
+        </p>
       </section>
 
       {/* Latest Posts Section */}
       {featuredPosts.length > 0 && (
         <section className="space-y-8">
-          <div className="space-y-2">
-            <h2 className="text-2xl md:text-3xl font-semibold">Artículos Recientes</h2>
-          </div>
+          <h2 className="text-2xl md:text-3xl font-bold tracking-[-0.02em] text-[#111111] dark:text-[#f0f0f0]">
+            Artículos Recientes
+          </h2>
 
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {featuredPosts.map((post) => (
               <article
                 key={post.slug}
-                className="group relative rounded-xl border border-border bg-card hover:shadow-lg transition-all duration-300"
+                className="group relative rounded-xl border border-[#eeeeee] dark:border-[#2a2a2a] bg-card hover:shadow-md hover:border-primary-300 dark:hover:border-primary-800 transition-all duration-300"
               >
                 <div className="p-6">
                   {isNewPost(post.publishDate) && (
                     <Badge
-                      variant="blue"
-                      className="absolute right-0 -top-3 -translate-x-1/2 z-10 shadow-md rounded-sm"
+                      variant="newGold"
+                      className="absolute right-0 -top-3 -translate-x-1/2 z-10 shadow-md"
                       aria-label="New post"
                     >
                       NEW
                     </Badge>
                   )}
                   <div className="flex items-center gap-2 mb-3">
-                    <time className="text-sm text-gray-500" dateTime={post.publishDate}>
+                    <time className="text-[13px] text-[#aaaaaa]" dateTime={post.publishDate}>
                       {new Date(post.publishDate).toLocaleDateString('en-US', {
                         year: 'numeric',
                         month: 'short',
@@ -61,47 +77,39 @@ export default async function Home() {
                     </time>
                     {post.category && (
                       <>
-                        <span className="text-gray-300">•</span>
-                        <span className="text-xs bg-primary-50 text-primary-700 dark:bg-primary-900/40 dark:text-primary-200 px-2 py-1 rounded-full">
-                          {post.category}
-                        </span>
+                        <span className="text-[#aaaaaa]">·</span>
+                        <Badge variant={categoryVariant(post.category)}>{post.category}</Badge>
                       </>
                     )}
                   </div>
 
                   <Link href={`/blog/posts/${post.slug}`}>
-                    <h3 className="text-xl font-semibold mb-3 group-hover:text-primary-500 transition-colors leading-tight text-foreground">
+                    <h3 className="text-[18px] font-semibold mb-3 group-hover:text-primary-700 dark:group-hover:text-primary-500 transition-colors leading-tight text-[#111111] dark:text-[#f0f0f0]">
                       {post.title}
                     </h3>
                   </Link>
 
-                  <p className="text-muted-foreground mb-4 leading-relaxed line-clamp-3">{post.description}</p>
+                  <p className="text-[15px] text-[#666666] dark:text-[#aaaaaa] mb-4 leading-relaxed line-clamp-3">
+                    {post.description}
+                  </p>
 
                   <Link
                     href={`/blog/posts/${post.slug}`}
-                    className="inline-flex items-center text-primary-500 hover:text-primary-700 font-medium transition-colors"
+                    className="inline-flex items-center text-primary-700 dark:text-primary-500 hover:text-primary-800 dark:hover:text-primary-400 font-medium transition-colors text-sm"
                   >
-                    Leer más
-                    <span className="material-symbol">arrow_right_alt</span>
+                    Leer más →
                   </Link>
                 </div>
               </article>
             ))}
           </div>
 
-          <div className="text-center">
+          <div>
             <Link
               href="/blog"
-              className="inline-flex items-center text-primary-500 hover:text-primary-700 font-semibold transition-colors"
+              className="inline-flex items-center text-primary-700 dark:text-primary-500 hover:text-primary-800 font-semibold transition-colors"
             >
-              Ver todos los artículos
-              <svg className="ml-2 w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
-                <path
-                  fillRule="evenodd"
-                  d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                  clipRule="evenodd"
-                />
-              </svg>
+              Ver todos los artículos →
             </Link>
           </div>
         </section>

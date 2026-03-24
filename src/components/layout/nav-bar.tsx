@@ -82,7 +82,8 @@ const NavItem = ({ href, label }: { href: string; label: string }) => {
           className={cn(
             'px-3 py-2 rounded-md transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background',
             'text-muted-foreground hover:text-foreground hover:bg-accent/60',
-            isActive && 'text-foreground underline decoration-primary-500 underline-offset-8'
+            isActive &&
+              'text-primary-700 dark:text-primary-500 underline decoration-primary-700 dark:decoration-primary-500 underline-offset-8'
           )}
           aria-label={`Navigate to ${label}`}
         >

@@ -9,20 +9,19 @@
 /* App theme tokens (Tailwind v4 `@theme` → generates utilities like text-primary-500) */
 /* -------------------------------------------------------------------------- */
 @theme {
-  --color-primary-50: #eef3f7;
-  --color-primary-100: #dde6ee;
-  --color-primary-200: #bacdde;
-  --color-primary-300: #98b4cd;
-  --color-primary-400: #759bbd;
-  --color-primary-500: #5382ac;
-  --color-primary-600: #42688a;
-  --color-primary-700: #324e67;
-  --color-primary-800: #213445;
-  --color-primary-900: #111a22;
-  --color-primary-950: #0c1218;
+  /* Sage palette */
+  --color-primary-100: #f4f7f5;
+  --color-primary-200: #e4ede8;
+  --color-primary-300: #c8ddd0;
+  --color-primary-400: #a8c8b4;
+  --color-primary-500: #7daa8d;
+  --color-primary-600: #5c9070;
+  --color-primary-700: #4d7c5f;
+  --color-primary-800: #3b6049;
+  --color-primary-900: #274535;
 
   /* Convenience aliases */
-  --color-primary: var(--color-primary-500);
+  --color-primary: var(--color-primary-700);
 }
 
 /* -------------------------------------------------------------------------- */
@@ -91,7 +90,7 @@
 :root {
   --radius: 0.625rem;
 
-  --background: oklch(1 0 0);
+  --background: #fafaf9;
   --foreground: oklch(0.145 0 0);
 
   --card: oklch(1 0 0);
@@ -135,11 +134,10 @@
 }
 
 .dark {
-  --background: #24282e;
+  --background: #0c0c0c;
   --foreground: oklch(0.985 0 0);
 
-  /* Slightly lighter than before so cards read as "dark gray" vs near-black. */
-  --card: oklch(0.3756 0.0133 248.21);
+  --card: #1a1a1a;
   --card-foreground: oklch(0.985 0 0);
 
   --popover: oklch(0.245 0 0);
@@ -159,7 +157,7 @@
 
   --destructive: oklch(0.704 0.191 22.216);
 
-  --border: oklch(1 0 0 / 10%);
+  --border: #2a2a2a;
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.556 0 0);
 
