@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { BlogPost, getPosts } from '@utils/post-utils';
 import { Badge, badgeVariants } from '@components/ui/badge';
 import type { VariantProps } from 'class-variance-authority';
+import { cn } from '@components/utils';
 
 export const metadata = {
   title: 'Blog - Rafael Velazco',
@@ -20,7 +21,7 @@ const categoryVariant = (category: string): BadgeVariant => {
   return map[category] ?? 'default';
 };
 
-export default async function BlogPage() {
+export default async function BlogPage({ searchParams }: { searchParams: Promise<{ category?: string }> }) {
   const posts = await getPosts();
 
   const categories = [...new Set(posts.map((post) => post.category).filter(Boolean))] as string[];
@@ -53,7 +54,7 @@ export default async function BlogPage() {
           ) : (
             posts.map((post, i) => (
               <div key={post.slug}>
-                <BlogItem post={post} />
+                <BlogItem post={post} first={i === 0} />
                 {i < posts.length - 1 && <div className="border-t border-gray-100 dark:border-[#2a2a2a] my-1" />}
               </div>
             ))
@@ -114,9 +115,14 @@ function CategoryLink({ href, label, active }: { href: string; label: string; ac
   );
 }
 
-function BlogItem({ post }: { post: BlogPost }) {
+function BlogItem({ post, first }: { post: BlogPost; first: boolean }) {
   return (
-    <article className="group -mx-4 px-4 py-5 rounded-xl hover:bg-[rgba(77,124,95,0.04)] dark:hover:bg-[rgba(77,124,95,0.08)] transition-colors">
+    <article
+      className={cn(
+        'group -mx-4 px-4 py-5 rounded-xl hover:bg-[rgba(77,124,95,0.04)] dark:hover:bg-[rgba(77,124,95,0.08)] transition-colors',
+        first && 'pt-0'
+      )}
+    >
       <div className="flex items-center gap-2.5 mb-3">
         <time className="text-[12px] text-gray-400 dark:text-gray-500" dateTime={post.publishDate}>
           {new Date(post.publishDate).toLocaleDateString('en-US', {
