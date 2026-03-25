@@ -28,27 +28,74 @@ export default function RootLayout({
           <NavBar />
         </div>
       </header>
+
       <main className="flex-grow w-full mx-auto px-4">{children}</main>
-      <footer className="mx-auto w-full mx-auto p-4 gap-4 flex justify-center flex-col-reverse sm:flex-col sm:items-end text-muted-foreground">
-        <div className="w-full flex flex-col-reverse gap-4 justify-center items-center sm:flex-row sm:items-center sm:justify-between">
-          <span className="sm:text-center">
-            © {currentYear} <Link href="/">Rafael Velazco</Link>. All Rights Reserved.
-          </span>
-          <ul className="flex flex-wrap items-center mt-3 font-medium gap-2 sm:mt-0">
-            <Link href="https://github.com/rjvelazco">
+
+      <footer className="mt-16 border-t border-border">
+        {/* 3-column section */}
+        <div className="grid grid-cols-1 gap-8 py-12 sm:grid-cols-3">
+          {/* Col 1: Bio */}
+          <div className="space-y-3">
+            <p className="text-[10px] font-bold tracking-[0.08em] uppercase text-gray-400">Rafael Velazco</p>
+            <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+              Senior Software Engineer escribiendo sobre código, personas e ideas.
+            </p>
+          </div>
+
+          {/* Col 2: Navigation */}
+          <div className="space-y-3">
+            <p className="text-[10px] font-bold tracking-[0.08em] uppercase text-gray-400">Navegación</p>
+            <ul className="space-y-2">
+              {[
+                { href: '/blog', label: 'Blog' },
+                { href: '/portfolio', label: 'Portfolio' },
+                { href: 'mailto:rjvelazco21@gmail.com', label: 'Contacto' },
+              ].map(({ href, label }) => (
+                <li key={label}>
+                  <Link
+                    href={href}
+                    className="text-sm text-gray-500 dark:text-gray-400 hover:text-primary-700 dark:hover:text-primary-500 transition-colors"
+                  >
+                    {label}
+                  </Link>
+                </li>
+              ))}
+
               <li>
-                <Image className="cursor-pointer" src="/assets/github.svg" alt="GitHub" width={16} height={16} />
+                <Link href="https://www.linkedin.com/in/rafael-velazco/" aria-label="LinkedIn">
+                  <Image
+                    className="cursor-pointer opacity-50 hover:opacity-100 transition-opacity"
+                    src="/assets/linkedin.svg"
+                    alt="LinkedIn"
+                    width={18}
+                    height={18}
+                  />
+                </Link>
               </li>
-            </Link>
-            <Link href="https://www.linkedin.com/in/rafael-velazco/">
-              <li>
-                <Image className="cursor-pointer" src="/assets/linkedin.svg" alt="LinkedIn" width={16} height={16} />
-              </li>
-            </Link>
-            <li className="hover:underline">
-              <a href="mailto:rjvelazco21@gmail.com">Contact</a>
-            </li>
-          </ul>
+            </ul>
+          </div>
+
+          {/* Col 3: Topics */}
+          <div className="space-y-3">
+            <p className="text-[10px] font-bold tracking-[0.08em] uppercase text-gray-400">Temas</p>
+            <ul className="space-y-2">
+              {[
+                { href: '/blog?category=Angular', label: 'Angular' },
+                { href: '/blog?category=NgRx', label: 'NgRx' },
+                { href: '/blog?category=Book', label: 'Libros' },
+                { href: '/blog?category=Leadership', label: 'Liderazgo' },
+              ].map(({ href, label }) => (
+                <li key={label}>
+                  <Link
+                    href={href}
+                    className="text-sm text-gray-500 dark:text-gray-400 hover:text-primary-700 dark:hover:text-primary-500 transition-colors"
+                  >
+                    {label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </footer>
     </div>

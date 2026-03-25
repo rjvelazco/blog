@@ -1123,9 +1123,9 @@
   dependencies:
     "@radix-ui/react-use-layout-effect" "1.1.1"
 
-"@radix-ui/react-popover@^1.1.15":
+"@radix-ui/react-popover@1.1.15":
   version "1.1.15"
-  resolved "https://registry.npmjs.org/@radix-ui/react-popover/-/react-popover-1.1.15.tgz"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-popover/-/react-popover-1.1.15.tgz#9c852f93990a687ebdc949b2c3de1f37cdc4c5d5"
   integrity sha512-kr0X2+6Yy/vJzLYJUPCZEc8SfQcf+1COFoAqauJm74umQhta9M7lNJHP7QQS3vkvcGLQUbWpMzwrXYwrYztHKA==
   dependencies:
     "@radix-ui/primitive" "1.1.3"
@@ -1356,9 +1356,9 @@
   resolved "https://registry.npmjs.org/@sindresorhus/merge-streams/-/merge-streams-4.0.0.tgz"
   integrity sha512-tlqY9xq5ukxTUZBmoOp+m61cqwQD5pHJtFY3Mn8CA8ps6yghLH/Hw8UPdqg4OLmFW3IFlcXnQNmo/dh8HzXYIQ==
 
-"@stefanprobst/rehype-extract-toc@^3.0.0":
+"@stefanprobst/rehype-extract-toc@3.0.0":
   version "3.0.0"
-  resolved "https://registry.npmjs.org/@stefanprobst/rehype-extract-toc/-/rehype-extract-toc-3.0.0.tgz#e525b75f5eeb23b5e8e199509d7280a64f845d52"
+  resolved "https://registry.yarnpkg.com/@stefanprobst/rehype-extract-toc/-/rehype-extract-toc-3.0.0.tgz#e525b75f5eeb23b5e8e199509d7280a64f845d52"
   integrity sha512-ZnmL6g8DydunVa2/Vk54PTPC+Ib096Xwvd/mqhK/mqsTh6jaiLZFAvM3FUsOiio0oeVpUDb1jbBPePfA9m/NRg==
   dependencies:
     estree-util-is-identifier-name "^3.0.0"
@@ -1868,9 +1868,9 @@
     picomatch "^4.0.2"
     resolve-from "^5.0.0"
 
-"@vercel/node@^5.5.28":
+"@vercel/node@5.5.28":
   version "5.5.28"
-  resolved "https://registry.npmjs.org/@vercel/node/-/node-5.5.28.tgz#c9611c419d8c046b1e9d059881b56631a2d38dae"
+  resolved "https://registry.yarnpkg.com/@vercel/node/-/node-5.5.28.tgz#c9611c419d8c046b1e9d059881b56631a2d38dae"
   integrity sha512-zuhUKqFdeoTz+o6S5zyKKXERrxbJpFmbt5qMrsg7t2pfxJZSAR6xg+HRSJd710uJnKpmi4h89hp/TIu1CuvAUQ==
   dependencies:
     "@edge-runtime/node-utils" "2.3.0"
@@ -2974,9 +2974,9 @@ eslint-config-next@16.0.10:
     globals "16.4.0"
     typescript-eslint "^8.46.0"
 
-eslint-config-prettier@^10.1.8:
+eslint-config-prettier@10.1.8:
   version "10.1.8"
-  resolved "https://registry.npmjs.org/eslint-config-prettier/-/eslint-config-prettier-10.1.8.tgz"
+  resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-10.1.8.tgz#15734ce4af8c2778cc32f0b01b37b0b5cd1ecb97"
   integrity sha512-82GZUjRS0p/jganf6q1rEO25VSoHH0hKPCTrgillPjdI/3bgBhAE1QzHrHTizjpRvy6pGAvKjDJtk2pF9NDq8w==
 
 eslint-import-resolver-node@^0.3.6, eslint-import-resolver-node@^0.3.9:
@@ -3895,9 +3895,9 @@ human-signals@^8.0.1:
   resolved "https://registry.npmjs.org/human-signals/-/human-signals-8.0.1.tgz"
   integrity sha512-eKCa6bwnJhvxj14kZk5NCPc6Hb6BdsU9DZcOnmQKSnO1VKrfV0zCvtttPZUsBvjmNDn8rpcJfpwSYnHBjc95MQ==
 
-husky@^9.1.7:
+husky@9.1.7:
   version "9.1.7"
-  resolved "https://registry.npmjs.org/husky/-/husky-9.1.7.tgz"
+  resolved "https://registry.yarnpkg.com/husky/-/husky-9.1.7.tgz#d46a38035d101b46a70456a850ff4201344c0b2d"
   integrity sha512-5gs5ytaNjBrh5Ow3zrvdUUY+0VxIuWVL4i9irt6friV+BqdCfmV11CQTWMiBYWHbXhco+J1kHfTOUkePhCDvMA==
 
 iconv-lite@^0.7.0, iconv-lite@~0.7.0:
@@ -5367,9 +5367,9 @@ negotiator@^1.0.0:
   resolved "https://registry.npmjs.org/negotiator/-/negotiator-1.0.0.tgz"
   integrity sha512-8Ofs/AUQh8MaEcrlq5xOX0CQ9ypTF5dl78mjlMNfOK08fzpgTHQRQPBxcPlEtIw0yRpws+Zo/3r+5WRby7u3Gg==
 
-next-themes@^0.4.6:
+next-themes@0.4.6:
   version "0.4.6"
-  resolved "https://registry.npmjs.org/next-themes/-/next-themes-0.4.6.tgz"
+  resolved "https://registry.yarnpkg.com/next-themes/-/next-themes-0.4.6.tgz#8d7e92d03b8fea6582892a50a928c9b23502e8b6"
   integrity sha512-pZvgD5L0IEvX5/9GWyHMf3m8BKiVQwsCMHfoFosXtXBMnaS0ZnIJ9ST4b4NqLVKDEm8QBxoNNGNaBv2JNF6XNA==
 
 next@16.0.10:
@@ -5831,9 +5831,9 @@ prelude-ls@^1.2.1:
   resolved "https://registry.npmjs.org/prelude-ls/-/prelude-ls-1.2.1.tgz"
   integrity sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==
 
-prettier@^3.7.4:
+prettier@3.7.4:
   version "3.7.4"
-  resolved "https://registry.npmjs.org/prettier/-/prettier-3.7.4.tgz"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-3.7.4.tgz#d2f8335d4b1cec47e1c8098645411b0c9dff9c0f"
   integrity sha512-v6UNi1+3hSlVvv8fSaoUbggEM5VErKmmpGA7Pl3HF8V6uKY7rvClBOJlH6yNwQtfTueNkGVpOv/mtWL9L4bgRA==
 
 pretty-ms@7.0.1:
@@ -6082,9 +6082,9 @@ rehype-recma@^1.0.0:
     "@types/hast" "^3.0.0"
     hast-util-to-estree "^3.0.0"
 
-rehype-slug@^6.0.0:
+rehype-slug@6.0.0:
   version "6.0.0"
-  resolved "https://registry.npmjs.org/rehype-slug/-/rehype-slug-6.0.0.tgz#1d21cf7fc8a83ef874d873c15e6adaee6344eaf1"
+  resolved "https://registry.yarnpkg.com/rehype-slug/-/rehype-slug-6.0.0.tgz#1d21cf7fc8a83ef874d873c15e6adaee6344eaf1"
   integrity sha512-lWyvf/jwu+oS5+hL5eClVd3hNdmwM1kAC0BUvEGD19pajQMIzcNUd/k9GsfQ+FfECvX+JE+e9/btsKH0EjJT6A==
   dependencies:
     "@types/hast" "^3.0.0"
@@ -6143,9 +6143,9 @@ remark-stringify@^11.0.0:
     mdast-util-to-markdown "^2.0.0"
     unified "^11.0.0"
 
-remark-toc@^9.0.0:
+remark-toc@9.0.0:
   version "9.0.0"
-  resolved "https://registry.npmjs.org/remark-toc/-/remark-toc-9.0.0.tgz"
+  resolved "https://registry.yarnpkg.com/remark-toc/-/remark-toc-9.0.0.tgz#7197950fe218a725e3f122a48495cb0dbd4026d0"
   integrity sha512-KJ9txbo33GjDAV1baHFze7ij4G8c7SGYoY8Kzsm2gzFpbhL/bSoVpMMzGa3vrNDSWASNd/3ppAqL7cP2zD6JIA==
   dependencies:
     "@types/mdast" "^4.0.0"
@@ -6346,9 +6346,9 @@ setprototypeof@~1.2.0:
   resolved "https://registry.npmjs.org/setprototypeof/-/setprototypeof-1.2.0.tgz"
   integrity sha512-E5LDX7Wrp85Kil5bhZv46j8jOeboKq5JMmYM3gVGdGH8xFpPWXUMsNrlODCrkoxMEeNi/XZIwuRvY4XNwYMJpw==
 
-shadcn@^3.6.1:
+shadcn@3.6.1:
   version "3.6.1"
-  resolved "https://registry.npmjs.org/shadcn/-/shadcn-3.6.1.tgz"
+  resolved "https://registry.yarnpkg.com/shadcn/-/shadcn-3.6.1.tgz#4c88a1a06d429b3cfe945ea64dc79899d8b847b5"
   integrity sha512-ClAtlvtyWVVzM87NCQyivSNSEPQEPLOAVCvey8rr6CukNyK2JeLNzJTdo9+4kpS/BSpx2MvQT+g+/V6ymZWmoQ==
   dependencies:
     "@antfu/ni" "^25.0.0"

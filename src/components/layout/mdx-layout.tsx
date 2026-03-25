@@ -50,9 +50,6 @@ export default function MdxLayout({ children, metadata, image, toc }: MdxLayoutP
           {toc && toc.length > 0 ? <TableOfContents toc={toc} /> : null}
           {children}
         </article>
-
-        {/* Article footer with navigation back to blog */}
-        <ArticleFooter />
       </BlogPostLayout>
     </div>
   );
@@ -153,7 +150,6 @@ const SubscriberMessage = () => {
 
   useEffect(() => {
     const subscribed = localStorage.getItem('newsletter_subscribed') === 'true';
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     setIsSubscribed(subscribed);
   }, []);
 
