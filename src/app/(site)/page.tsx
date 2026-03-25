@@ -33,9 +33,6 @@ export default async function Home() {
     <div className="mx-auto flex flex-col gap-12 py-8 md:py-12">
       {/* Hero Section */}
       <section className="pt-4 pb-8 md:pb-16">
-        <p className="text-[11px] font-bold tracking-[0.08em] uppercase text-gray-400 dark:text-gray-600 mb-4">
-          Senior Software Engineer
-        </p>
         <h1 className="text-5xl md:text-[56px] font-extrabold leading-tight tracking-[-0.03em] text-gray-900 dark:text-white max-w-2xl">
           Entrega valor <span className="text-primary-700 dark:text-primary-500">más allá del código</span>
         </h1>
@@ -55,7 +52,7 @@ export default async function Home() {
             {featuredPosts.map((post) => (
               <article
                 key={post.slug}
-                className="group relative rounded-xl border border-[#eeeeee] dark:border-[#2a2a2a] bg-card hover:shadow-md hover:border-primary-300 dark:hover:border-primary-800 transition-all duration-300"
+                className="group relative rounded-xl border border-border bg-card hover:shadow-md hover:border-primary-300 dark:hover:border-primary-800 transition-all duration-300"
               >
                 <div className="p-6">
                   {isNewPost(post.publishDate) && (

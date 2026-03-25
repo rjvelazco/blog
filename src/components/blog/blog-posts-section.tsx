@@ -38,7 +38,7 @@ export function BlogPostsSection({ posts }: BlogPostsSectionProps) {
           filteredPosts.map((post, i) => (
             <div key={post.slug}>
               <BlogItem post={post} blogListPath={pathname} first={i === 0} />
-              {i < filteredPosts.length - 1 && <div className="border-t border-gray-100 dark:border-[#2a2a2a] my-1" />}
+              {i < filteredPosts.length - 1 && <div className="border-t border-gray-100 dark:border-border my-1" />}
             </div>
           ))
         )}
@@ -62,7 +62,7 @@ export function BlogPostsSection({ posts }: BlogPostsSectionProps) {
           </div>
         </div>
 
-        <div className="border-t border-gray-100 dark:border-[#2a2a2a]" />
+        <div className="border-t border-gray-100 dark:border-border" />
 
         <div>
           <p className="text-[10px] font-bold tracking-[0.1em] uppercase text-gray-300 dark:text-gray-600 mb-4">
@@ -91,7 +91,7 @@ function CategoryLink({ href, label, active }: { href: string; label: string; ac
         'text-left text-[13px] font-medium px-3 py-2 rounded-lg border transition-colors',
         active
           ? 'bg-primary-700 dark:bg-primary-800 text-white border-primary-700 dark:border-primary-800'
-          : 'border-gray-200 dark:border-[#2a2a2a] text-gray-500 dark:text-gray-400 hover:border-primary-300 dark:hover:border-primary-700 hover:text-primary-700 dark:hover:text-primary-500'
+          : 'border-gray-200 dark:border-border text-gray-500 dark:text-gray-400 hover:border-primary-300 dark:hover:border-primary-700 hover:text-primary-700 dark:hover:text-primary-500'
       )}
     >
       {label}

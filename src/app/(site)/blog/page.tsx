@@ -11,10 +11,10 @@ export const metadata = {
 function BlogPostsFallback() {
   return (
     <div className="flex gap-14 items-start">
-      <div className="flex-1 min-w-0 h-64 animate-pulse rounded-xl bg-gray-100 dark:bg-[#2a2a2a]" />
+      <div className="flex-1 min-w-0 h-64 animate-pulse rounded-xl bg-gray-100 dark:bg-zinc-800" />
       <aside className="w-52 shrink-0 hidden lg:block space-y-8">
-        <div className="h-40 animate-pulse rounded-lg bg-gray-100 dark:bg-[#2a2a2a]" />
-        <div className="h-32 animate-pulse rounded-lg bg-gray-100 dark:bg-[#2a2a2a]" />
+        <div className="h-40 animate-pulse rounded-lg bg-gray-100 dark:bg-zinc-800" />
+        <div className="h-32 animate-pulse rounded-lg bg-gray-100 dark:bg-zinc-800" />
       </aside>
     </div>
   );

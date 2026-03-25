@@ -31,7 +31,7 @@ export default function RootLayout({
 
       <main className="flex-grow w-full mx-auto px-4">{children}</main>
 
-      <footer className="mt-16 border-t border-[#eeeeee] dark:border-[#2a2a2a]">
+      <footer className="mt-16 border-t border-border">
         {/* 3-column section */}
         <div className="grid grid-cols-1 gap-8 py-12 sm:grid-cols-3">
           {/* Col 1: Bio */}
@@ -60,6 +60,18 @@ export default function RootLayout({
                   </Link>
                 </li>
               ))}
+
+              <li>
+                <Link href="https://www.linkedin.com/in/rafael-velazco/" aria-label="LinkedIn">
+                  <Image
+                    className="cursor-pointer opacity-50 hover:opacity-100 transition-opacity"
+                    src="/assets/linkedin.svg"
+                    alt="LinkedIn"
+                    width={18}
+                    height={18}
+                  />
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -84,43 +96,6 @@ export default function RootLayout({
               ))}
             </ul>
           </div>
-        </div>
-
-        {/* Bottom bar */}
-        <div className="flex flex-col-reverse gap-4 border-t border-[#eeeeee] dark:border-[#2a2a2a] py-6 sm:flex-row sm:items-center sm:justify-between">
-          <span className="text-sm text-gray-400">© {currentYear} Rafael Velazco. All Rights Reserved.</span>
-          <ul className="flex items-center gap-4">
-            <li>
-              <Link href="https://github.com/rjvelazco" aria-label="GitHub">
-                <Image
-                  className="cursor-pointer opacity-50 hover:opacity-100 transition-opacity"
-                  src="/assets/github.svg"
-                  alt="GitHub"
-                  width={18}
-                  height={18}
-                />
-              </Link>
-            </li>
-            <li>
-              <Link href="https://www.linkedin.com/in/rafael-velazco/" aria-label="LinkedIn">
-                <Image
-                  className="cursor-pointer opacity-50 hover:opacity-100 transition-opacity"
-                  src="/assets/linkedin.svg"
-                  alt="LinkedIn"
-                  width={18}
-                  height={18}
-                />
-              </Link>
-            </li>
-            <li>
-              <a
-                href="mailto:rjvelazco21@gmail.com"
-                className="text-sm text-[#aaaaaa] hover:text-primary-700 dark:hover:text-primary-500 transition-colors"
-              >
-                Contact
-              </a>
-            </li>
-          </ul>
         </div>
       </footer>
     </div>

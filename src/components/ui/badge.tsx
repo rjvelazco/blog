@@ -9,15 +9,14 @@ const badgeVariants = cva(
     variants: {
       variant: {
         default:
-          'bg-[#f4f7f5] text-[#4d7c5f] border-[#c8ddd0] dark:bg-[#4d7c5f]/20 dark:text-[#7daa8d] dark:border-[#4d7c5f]/30',
-        // AA contrast with white text (previous accent was too light in dark mode).
-        blue: 'bg-[#eff6ff] text-[#3b82f6] border-[#bfdbfe] dark:bg-[#3b82f6]/20 dark:text-[#93c5fd] dark:border-[#3b82f6]/30',
+          'bg-primary-100 text-primary-700 border-primary-300 dark:bg-primary-700/20 dark:text-primary-500 dark:border-primary-700/30',
+        blue: 'bg-blue-50 text-blue-500 border-blue-200 dark:bg-blue-500/20 dark:text-blue-300 dark:border-blue-500/30',
         newGold:
           'border border-amber-300/50 bg-neutral-950 px-4 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-amber-200 shadow-[0_0_0_1px_rgba(245,158,11,0.18),0_10px_22px_rgba(0,0,0,0.28)]',
         angular:
-          'bg-[#f4f7f5] text-[#4d7c5f] border-[#c8ddd0] dark:bg-[#4d7c5f]/20 dark:text-[#7daa8d] dark:border-[#4d7c5f]/30',
-        ngrx: 'bg-[#eff6ff] text-[#3b82f6] border-[#bfdbfe] dark:bg-[#3b82f6]/20 dark:text-[#93c5fd] dark:border-[#3b82f6]/30',
-        book: 'bg-[#fdf4ff] text-[#9333ea] border-[#e9d5ff] dark:bg-[#9333ea]/20 dark:text-[#c084fc] dark:border-[#9333ea]/30',
+          'bg-primary-100 text-primary-700 border-primary-300 dark:bg-primary-700/20 dark:text-primary-500 dark:border-primary-700/30',
+        ngrx: 'bg-blue-50 text-blue-500 border-blue-200 dark:bg-blue-500/20 dark:text-blue-300 dark:border-blue-500/30',
+        book: 'bg-purple-50 text-purple-600 border-purple-200 dark:bg-purple-600/20 dark:text-purple-400 dark:border-purple-600/30',
         leadership:
           'bg-gray-100 text-gray-600 border-gray-300 dark:bg-white/10 dark:text-gray-400 dark:border-white/20',
       },
