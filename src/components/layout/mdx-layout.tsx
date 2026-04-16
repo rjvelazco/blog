@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { TableOfContents } from '@components/mdx/table-of-contents';
 import { SharePost } from '@components/ui/share-post';
 import { BlogPostLayout } from '@components/layout/blog-post-layout';
+import { cn } from '@components/utils';
 
 interface MdxLayoutProps {
   children: React.ReactNode;
@@ -23,10 +24,21 @@ interface MdxLayoutProps {
     };
   };
   image?: string;
+  /** Use `contain` for wide diagrams or assets that must not be cropped (default: `cover` for photos). */
+  imageObjectFit?: 'cover' | 'contain';
+  /** Override default `aspect-[16/9]` on the header image frame (e.g. `aspect-[820/320]` for a matching diagram). */
+  imageAspectClassName?: string;
   toc?: Parameters<typeof TableOfContents>[0]['toc'];
 }
 
-export default function MdxLayout({ children, metadata, image, toc }: MdxLayoutProps) {
+export default function MdxLayout({
+  children,
+  metadata,
+  image,
+  imageObjectFit = 'cover',
+  imageAspectClassName,
+  toc,
+}: MdxLayoutProps) {
   return (
     <div className="mx-auto w-full max-w-7xl ">
       {/* Back to blog navigation */}
@@ -43,7 +55,12 @@ export default function MdxLayout({ children, metadata, image, toc }: MdxLayoutP
 
       {/* Two-column layout: content on left, newsletter on right (desktop only) */}
       <BlogPostLayout>
-        <ArticleHeader metadata={metadata} image={image} />
+        <ArticleHeader
+          metadata={metadata}
+          image={image}
+          imageObjectFit={imageObjectFit}
+          imageAspectClassName={imageAspectClassName}
+        />
 
         {/* Article content */}
         <article className="prose prose-lg prose-zinc max-w-none prose-headings:scroll-mt-20 prose-pre:bg-zinc-900 prose-pre:text-zinc-100 prose-a:text-primary-600 prose-a:decoration-primary-300 prose-a:underline-offset-4 hover:prose-a:text-primary-700 dark:prose-invert dark:prose-a:text-primary-300 dark:hover:prose-a:text-primary-200 dark:prose-pre:bg-zinc-950">
@@ -61,18 +78,34 @@ export default function MdxLayout({ children, metadata, image, toc }: MdxLayoutP
  * @param image - Article cover image
  * @returns Article header component
  */
-const ArticleHeader = ({ metadata, image }: { metadata: MdxLayoutProps['metadata']; image?: string }) => {
+const ArticleHeader = ({
+  metadata,
+  image,
+  imageObjectFit,
+  imageAspectClassName,
+}: {
+  metadata: MdxLayoutProps['metadata'];
+  image?: string;
+  imageObjectFit: NonNullable<MdxLayoutProps['imageObjectFit']>;
+  imageAspectClassName?: string;
+}) => {
   const postUrl = metadata.alternates?.canonical ?? metadata.openGraph?.url ?? '/';
   return (
     <header className="mb-12 border-b border-border pb-8">
       {image && (
-        <div className="relative mb-8 aspect-[16/9] w-full overflow-hidden rounded-2xl ring-1 ring-black/5 shadow-sm">
+        <div
+          className={cn(
+            'relative mb-8 w-full overflow-hidden rounded-2xl ring-1 ring-black/5 shadow-sm',
+            imageAspectClassName ?? 'aspect-[16/9]',
+            imageObjectFit === 'contain' && 'bg-muted'
+          )}
+        >
           <Image
             src={image}
             alt={metadata.title || 'Article cover image'}
             fill
             priority
-            className="object-cover"
+            className={imageObjectFit === 'contain' ? 'object-contain' : 'object-cover'}
             sizes="(min-width: 1024px) 896px, (min-width: 640px) 640px, 100vw"
           />
         </div>

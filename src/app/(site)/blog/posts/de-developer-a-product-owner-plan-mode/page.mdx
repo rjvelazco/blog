@@ -1,0 +1,88 @@
+import MdxLayout from '@components/layout/mdx-layout';
+
+export const metadata = {
+  title: 'De developer a Product Owner: cómo el Plan Mode cambia tu forma de trabajar con AI',
+  description:
+    'Aprender a trabajar con AI no es solo elegir la herramienta correcta. Es aprender a definir, planificar y dirigir. El Plan Mode de Claude Code es el primer paso para lograrlo.',
+  date: '2026-04-16',
+  category: 'AI',
+  publishDate: '2026-04-16',
+  openGraph: {
+    title: 'De developer a Product Owner: cómo el Plan Mode cambia tu forma de trabajar con AI',
+    description:
+      'Aprender a trabajar con AI no es solo elegir la herramienta correcta. Es aprender a definir, planificar y dirigir. El Plan Mode de Claude Code es el primer paso para lograrlo.',
+    type: 'article',
+    locale: 'es_ES',
+    url: 'https://www.rjvelazco.com/blog/posts/de-developer-a-product-owner-plan-mode/',
+    siteName: 'Rafael Velazco',
+    images: [
+      {
+        url: '/assets/plan-mode-banner.webp',
+        alt: 'De developer a Product Owner: Plan Mode de Claude Code',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'De developer a Product Owner: cómo el Plan Mode cambia tu forma de trabajar con AI',
+    description:
+      'Aprender a trabajar con AI no es solo elegir la herramienta correcta. Es aprender a definir, planificar y dirigir. El Plan Mode de Claude Code es el primer paso para lograrlo.',
+    creator: '@rjvelazco21',
+    images: ['/assets/plan-mode-banner.webp'],
+  },
+  alternates: {
+    canonical: 'https://www.rjvelazco.com/blog/posts/de-developer-a-product-owner-plan-mode/',
+  },
+};
+
+export default function Layout({ children }) {
+  return (
+    <MdxLayout
+      metadata={metadata}
+      toc={tableOfContents}
+      image="/assets/plan-mode-diagram.svg"
+      imageObjectFit="contain"
+      imageAspectClassName="aspect-[820/320]"
+    >
+      {children}
+    </MdxLayout>
+  );
+}
+
+## ¿Por qué deberías usar Plan Mode?
+
+Cuando tenía una idea en mente y se la daba a Claude Code, el resultado era funcional, pero no era exactamente lo que yo quería. En el proceso, la AI asumía cosas que yo no había definido. Sin límites claros, la AI interpreta. Y su interpretación no siempre coincide con la tuya.
+
+Y cuando los límites no están claros, la AI asume. Y cuando la AI asume, aparecen los errores, los casos no contemplados, el trabajo que hay que deshacer.
+
+El problema no era la herramienta. Era cómo la estaba usando.
+
+Hoy, el skill más importante de un developer no es saber implementar algo. Es saber definir qué se necesita, con suficiente claridad para que alguien más, o algo más, pueda ejecutarlo sin adivinar. Plan Mode existe precisamente para eso: para ayudarte a sacar la idea de tu cabeza y convertirla en un plan concreto antes de que se escriba una sola línea de código.
+
+## ¿Qué beneficios obtienes?
+
+Piénsalo de esta forma: tú eres el Product Owner y Claude Code es tu developer. Un buen developer, antes de escribir una sola línea de código, se sienta contigo a entender qué necesitas, revisa lo que ya existe y propone un plan. Plan Mode hace exactamente eso.
+
+**Analiza tu codebase**
+
+Antes de planificar, Claude Code explora tu proyecto. Identifica qué puedes reutilizar, qué necesita un refactor y qué hay que construir desde cero. No parte de cero asumiendo nada; parte de lo que ya tienes.
+
+**Diseña un plan por pasos**
+
+El resultado no es una respuesta genérica. Es un plan estructurado, dividido en pasos concretos que puedes seguir y validar. Una feature grande puede dividirse en secciones independientes: frontend, backend, integraciones; cada una ejecutable por separado.
+
+**Es interactivo**
+
+Aquí está lo que más me gusta del Plan Mode: no te saca del proceso. Propone, tú ajustas. Tú corriges, él adapta. Es un loop de feedback donde ambos se orientan hacia el mismo resultado antes de que empiece cualquier ejecución. Como una reunión de refinamiento, pero sin el calendar invite.
+
+## ¿Por qué ser parte del loop antes de salirte de él?
+
+Es tentador querer saltarse este paso. Si el objetivo final es automatizar, ¿para qué detenerse a planificar manualmente? ¿Para qué ser parte del loop si lo que quieres es salirte de él?
+
+Porque antes de dirigir, hay que entender cómo piensa quien ejecuta.
+
+Plan Mode no es un paso intermedio que eventualmente vas a abandonar. Es donde aprendes a comunicarte con la AI de forma efectiva: a estructurar tus ideas, a anticipar los huecos en tu razonamiento, a reconocer cuándo un plan está incompleto antes de que se convierta en código que hay que deshacer.
+
+Y aquí está la ventaja que tienes como developer: el background técnico. Un PO define qué se necesita. Tú defines qué se necesita y entiendes cómo se construye. Eso te convierte en algo diferente: alguien que puede dirigir a su propio equipo de AIs con criterio técnico.
+
+Cuanto mejor entiendas el proceso de planificación, mejores instrucciones vas a dar. Y mejores instrucciones significan menos intervención tuya, no más. El camino hacia la automatización no es saltarse el loop; es dominarlo primero.
